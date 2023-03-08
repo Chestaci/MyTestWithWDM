@@ -8,6 +8,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
@@ -22,8 +23,10 @@ public class CheckLoginTest extends MyTest {
     @BeforeEach
     @Step("Настройки перед началом тестов. Создание начальной страницы и ее открытие.")
     public void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
         //создание экземпляра драйвера
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         //окно разворачивается на полный экран
         driver.manage().window().maximize();
         //задержка на выполнение теста = 10 сек.
