@@ -8,6 +8,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import io.qameta.allure.Description;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
@@ -26,8 +27,10 @@ public class SuccessfulPurchaseTest extends MyTest {
             " Создание начальной страницы, ее открытие и авторизация в ней." +
             " Создание страницы Products для теста")
     public void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
         //создание экземпляра драйвера
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         //окно разворачивается на полный экран
         driver.manage().window().maximize();
         //задержка на выполнение теста = 10 сек.
